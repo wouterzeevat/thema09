@@ -1,0 +1,4 @@
+```{r}
+data <- read.csv('Autism_Data.arff')
+data
+```
