@@ -7,16 +7,50 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r, echo=false}
+
+```
 ## Journal Thema 9 Wouter Zeevat
 
+We will start off by looking at the data and codebook. The data contains 20 variables which will be loaded in as the codebook.
 ```{r}
 data <- read.csv('Autism_Data.arff')
-data
+codebook <- read.csv('codebook.csv')
+
+knitr::kable(codebook)
 ```
+## The data
 This is the data that will be used in the following project. it contains various information about adults doing an autism test. The columns speak for themselves except for the first 10. These columns represent the anwsers of the following question list.
 
 https://www.nice.org.uk/guidance/cg142/resources/autism-spectrum-quotient-aq10-test-pdf-186582493
 
 This is a general question list and the questions do not really matter. Each question gives points for the selected anwser. The more points the people have, the more chance there is of them having ADS (Autism disorder spectrum).
 
-The last column is also a little unclear. !!!!!!!!!!!!!!!!!!!!!!
+## Research question
+#### Could machine learning be used to proof an autism disorder spectrum test can predict someone having the autism disorder spectrum?
+The goal of this research question is to find out if this autism spectrum disorder test actually works and predicts someone has it. This would involve machine learning by testing if the computer would find correlations and would be able to predict them actually having ASD
+
+After knowing all this it's time to see if the data is right. The data is suppost to have 20 columns and 704 rows. 
+```{r}
+ncol(data)
+nrow(data)
+```
+
+The data also needs to be checked of missing data (A row that's missing curtain values). The ones that are missing important data will be removed. This needs to be done in order to not mess everything up. For example if someone is missing an anwser of the quiz, their score will be messed up and invalid.
+
+This code will check if theres any important scores missing or being invalid, The scores per question can only be 0 or 1 and the final score can only be 0 to 10.
+```{r}
+check_undefined <- function(value, row, question) {
+  if (value == "?") {
+    print("Undefined row found in question " + question + "!")
+  }
+}
+
+apply(data$A1_Score, FUN = check_undefined())
+
+```
+
+
+```{r}
+
+```

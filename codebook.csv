@@ -1,0 +1,22 @@
+Variable name short, Variable name human readable, type, unit
+a1_score,Anwser question 1 score, numeric 1 or 0, score
+a2_score,Anwser question 2 score, numeric 1 or 0, score
+a3_score,Anwser question 3 score, numeric 1 or 0, score
+a4_score,Anwser question 4 score, numeric 1 or 0, score
+a5_score,Anwser question 5 score, numeric 1 or 0, score
+a6_score,Anwser question 6 score, numeric 1 or 0, score
+a7_score,Anwser question 7 score, numeric 1 or 0, score
+a8_score,Anwser question 8 score, numeric 1 or 0, score
+a9_score,Anwser question 9 score, numeric 1 or 0, score
+a10_score,Anwser question 10 score, numeric 1 or 0, score
+age,age, numeric, years
+gender, gender, nominal, male or female
+ethnicity, ethnicity, nominal, type of ethnicity
+jaundice, jaundice, boolean, yes or no
+autism, autism, boolean, yes or no
+country_of_r, country of residence, nominal, country name
+used_app_before, used the app before, boolean, yes or no
+end_score, final test score, numeric, 0-10 score
+age_desc, age descending, nominal factor, years
+relation, relation user compared to person of interest, nominal, string of relationship
+class_asd, family member has asd, boolean, yes or no
