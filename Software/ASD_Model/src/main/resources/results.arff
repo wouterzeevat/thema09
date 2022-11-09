@@ -1,0 +1,22 @@
+@relation filtered
+
+@attribute a1_score {YES,NO}
+@attribute a2_score {YES,NO}
+@attribute a3_score {YES,NO}
+@attribute a4_score {YES,NO}
+@attribute a5_score {NO,YES}
+@attribute a6_score {NO,YES}
+@attribute a7_score {YES,NO}
+@attribute a8_score {YES,NO}
+@attribute a9_score {NO,YES}
+@attribute a10_score {NO,YES}
+@attribute age numeric
+@attribute gender {f,m}
+@attribute jaundice {no,yes}
+@attribute end_score numeric
+@attribute class_asd {NO,YES}
+@attribute autism {no,yes}
+
+@data
+YES,YES,YES,YES,YES,YES,YES,YES,YES,YES,20,m,yes,10,YES,yes
+NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,45,f,no,0,NO,no

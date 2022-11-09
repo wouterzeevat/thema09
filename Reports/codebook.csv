@@ -1,0 +1,22 @@
+Variable name short, Variable name human readable, description, type, unit
+a1_score,Anwser question 1 score,The first anwser of the Q10 test,numeric 1 or 0,score
+a2_score,Anwser question 2 score,The second anwser of the Q10 test, numeric 1 or 0,score
+a3_score,Anwser question 3 score,The third anwser of the Q10 test, numeric 1 or 0,score
+a4_score,Anwser question 4 score,The fourth anwser of the Q10 test. numeric 1 or 0,score
+a5_score,Anwser question 5 score,The fifth anwser of the Q10 test, numeric 1 or 0,score
+a6_score,Anwser question 6 score,The sixth anwser of the Q10 test, numeric 1 or 0,score
+a7_score,Anwser question 7 score,The seventh anwser of the Q10 test, numeric 1 or 0,score
+a8_score,Anwser question 8 score,The eighth anwser of the Q10 test, numeric 1 or 0,score
+a9_score,Anwser question 9 score,The ningth anwser of the Q10 test, numeric 1 or 0,score
+a10_score,Anwser question 10 score,The tenth anwser of the Q10 test, numeric 1 or 0,score
+age,age,The age of the corresponding person, numeric,years
+gender,gender,The gender of the corresponding person, nominal,male or female
+ethnicity,ethnicity,the ethnicity of the corresponding person nominal, type of ethnicity
+jaundice,jaundice,Does the person have jaundice.This is sometimes linked with ASD,boolean,yes or no
+autism,autism,Does the person actually have autism,boolean,yes or no
+country_of_r,country of residence,The country where the corresponding person lives,nominal,country name
+used_app_before,used the app before,Did the corresponding person used the app that is used to take the Q10 test before,boolean,yes or no
+end_score,final test score,The score of all 10 questions added up to eachother,numeric,0-10 score
+age_desc,age descending,The age of the person in a string. Usually 18 older,nominal factor,years
+relation,relationship,relation user compared to person of interest, nominal,string of relationship
+class_asd, classified ASD, Does the test classify the person as having ASD, boolean,yes or no

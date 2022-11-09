@@ -1,0 +1,24 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 0 -stddev-width 0 -sig-width 0 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   1
+Resultsets: 6
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       14-10-2022 12:51
+
+
+Dataset                   (1) rules.Ze | (2) bayes (3) funct (4) lazy. (5) trees (6) trees
+------------------------------------------------------------------------------------------
+filtered-weka.filters.sup(100)   49.52 |   64.04 v   64.93 v   59.58 v   62.28 v   58.73 v
+------------------------------------------------------------------------------------------
+                               (v/ /*) |   (1/0/0)   (1/0/0)   (1/0/0)   (1/0/0)   (1/0/0)
+
+
+Key:
+(1) rules.ZeroR '' 48055541465867954
+(2) bayes.NaiveBayes '' 5995231201785697655
+(3) functions.SimpleLogistic '-I 0 -M 500 -H 50 -W 0.0' 7397710626304705059
+(4) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(5) trees.J48 '-C 0.25 -M 2' -217733168393644444
+(6) trees.RandomForest '-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1' 1116839470751428698
+

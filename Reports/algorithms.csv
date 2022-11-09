@@ -1,0 +1,7 @@
+algorithm,accuracy, roc, error
+(1) ZeroR.Ze,49.52,0.50,0
+(2) NaiveBayes,64.04,0.73,0.08
+(4) ibK,59.58,0.60,0.09
+(5) J48,62.28,0.63,0.08
+(3) SimpleLogistic,64.93,0.68,0.09
+(6) RandomForest,58.73,0.71,0.08
