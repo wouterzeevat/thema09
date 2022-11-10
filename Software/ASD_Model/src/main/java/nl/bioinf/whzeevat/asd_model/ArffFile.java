@@ -25,8 +25,13 @@ public class ArffFile {
     }
 
     public static void saveArff(Instances instances, String toWhere) throws IOException {
-        Path path = Paths.get(toWhere);
-        Files.writeString(path, instances.toString());
+        try {
+            Path path = Paths.get(toWhere);
+            Files.writeString(path, instances.toString());
+            System.out.println("Successfully written output to " + path);
+        } catch (IOException e) {
+            System.out.println("The output file is not in a correct directory!");
+        }
     }
 
 }
