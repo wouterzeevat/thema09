@@ -6,9 +6,12 @@ import weka.core.Instances;
 import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Main {
@@ -18,7 +21,6 @@ public class Main {
     public static void main(String[] args) {
 
         Main main = new Main();
-
         String input = "src/main/resources/unknown.arff";
         String output = "src/main/resources/results.arff";
 
@@ -41,14 +43,15 @@ public class Main {
             labeled.instance(i).setClassValue(clsLabel);
 
             String format_label = "no";
-            if (clsLabel < 0) format_label = "yes";
+            if (clsLabel > 0) format_label = "yes";
             System.out.println(format_label);
         }
         return labeled;
     }
 
     public AbstractClassifier readClassifier() throws Exception {
-        return (AbstractClassifier) SerializationHelper.read(new FileInputStream("src/main/resources/simplelogistic.model"));
+        //InputStream input = getClass().getClassLoader().getResourceAsStream("simplelogistic.model");
+        return (AbstractClassifier) SerializationHelper.read(new FileInputStream("data/simplelogistic.model"));
     }
 
     public Main getMain() {

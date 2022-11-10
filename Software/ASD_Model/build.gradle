@@ -1,10 +1,10 @@
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: 'idea'
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'java'
+}
 
 group 'nl.whzeevat.asd_model'
 version '1.0.0'
-mainClassName = 'nl.bioinf.whzeevat.asd_model.Main'
 
 repositories {
     mavenCentral()
@@ -12,29 +12,18 @@ repositories {
 
 dependencies {
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
-
     implementation group: 'nz.ac.waikato.cms.weka', name: 'weka-stable', version: '3.8.5'
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
-test {
-    useJUnitPlatform()
-}
-
-task fatJar(type: Jar) {
-    group 'build'
-    description 'fat jar building with dependencies'
-
+jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Jar File Example',
-                'Implementation-Version': version,
-                'Main-Class': mainClassName
+        attributes "Main-Class": 'nl.bioinf.whzeevat.asd_model.Main'
     }
-    baseName = 'CLIdemo-Fatjar'
-    from { configurations.getByName('compile').collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
 
-
+shadowJar {
+    manifest {
+        attributes "Main-Class": 'nl.bioinf.whzeevat.asd_model.Main'
+    }
+}
