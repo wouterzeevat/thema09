@@ -188,29 +188,32 @@ cor.test(data$end_score, data$age, method="pearson")
 ```
 
 ## The weka algorithm
+
 There needs to be a algorithm made in Weka. After entering the data and removing the unused parts (Country of birth, Country of residence, Used the app before) multiple algorithms were tested. The function algorithm "SimpleLogistic" is chosen. This one fits the most because the different variables do not have a correlation therefore a tree or decision algorithm would not work. This will be confirmed by comparing it to different algorithms!
+
+After having tested this algorithm the results were dissapointing. Even though the % predicted right was a high 75%, the algorithm almost always predicted that people didn't have autism. Which seems good because not a lot of people have it. But the goal is to know when people have ASD. After concluding this i realized that the data was imbalanced. This was fixed by using a ClassBalancer supervised filter. Now the ASD values are 350.5 350.5 instead of 507 194.
+Now that the algorithm is correct some statistical tests will be applied.
 
 ```{r}
 algorithms <- read.csv("algorithms.csv")
 
 ggp <- ggplot(data=algorithms, aes(x=algorithm, y=accuracy), label = y, fill=group) +
-  geom_col(position = "dodge", color = c("#FFFFFF", "#FFFFFFFF", "#00FF00", "#FFFFFF", "#FFFFFF", "#FFFFFF"), show.legend = FALSE) +
+  geom_col(position = "dodge", color = c("#FFFFFF", "#FF00FF", "#00FF00", "#FFFFFF", "#FFFFFF", "#FFFFFF"), show.legend = FALSE) +
   ggtitle("Multiple Algorithms comparison")
 
 ggp
 ```
+The algorithm with the highest score here is SimpleLogistic. It's slightly higher than then NaiveBayes which is the second option.This shows that Simplelogistic was indeed the best option for accuracy. Now the ROC will be tested. If SimpleLogistic is really low here maybe NaiveBayes should be used instead.
 
 ```{r}
 
 ggp <- ggplot(data=algorithms, aes(x=algorithm, y=roc), label = y, fill=group, ylim=1.5) +
-  geom_col(position = "dodge", color = c("#FFFFFF", "#00FF00", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"), show.legend = FALSE) +
+  geom_col(position = "dodge", show.legend = FALSE) +
   ggtitle("Area under the curve (Standard deviation vs)"
   + geom_errorbar(data=algorithms, mapping=aes(x=algorithm, ymin=roc-error, ymax=roc+error), width=0.2, size=1, color="#00AAAA"))
 ggp
 ```
 
-After having tested this algorithm the results were dissapointing. Even though the % predicted right was a high 75%, the algorithm almost always predicted that people didn't have autism. Which seems good because not a lot of people have it. But the goal is to know when people have ASD. After concluding this i realized that the data was imbalanced. This was fixed by using a ClassBalancer supervised filter. Now the ASD values are 350.5 350.5 instead of 507 194.
-Now that the algorithm is correct some statistical tests will be applied.
                                
 
 ### Threshold curve

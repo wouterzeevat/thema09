@@ -26,4 +26,6 @@ shadowJar {
     manifest {
         attributes "Main-Class": 'nl.bioinf.whzeevat.asd_model.Main'
     }
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.SF'
 }

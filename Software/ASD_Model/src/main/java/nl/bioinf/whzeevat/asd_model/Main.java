@@ -21,8 +21,8 @@ public class Main {
     public static void main(String[] args) {
 
         Main main = new Main();
-        String input = "src/main/resources/unknown.arff";
-        String output = "src/main/resources/results.arff";
+        String input = "C:\\Users\\wouter\\thema09\\Software\\ASD_Model/src/main/resources/unknown.arff";
+        String output = "C:\\Users\\wouter\\thema09\\Software\\ASD_Model/src/main/resources/results.arff";
 
         try {
             AbstractClassifier classifier = main.readClassifier();
@@ -50,8 +50,8 @@ public class Main {
     }
 
     public AbstractClassifier readClassifier() throws Exception {
-        //InputStream input = getClass().getClassLoader().getResourceAsStream("simplelogistic.model");
-        return (AbstractClassifier) SerializationHelper.read(new FileInputStream("data/simplelogistic.model"));
+        InputStream file = getClass().getClassLoader().getResourceAsStream("simplelogistic.model");
+        return (AbstractClassifier) SerializationHelper.read(file);
     }
 
     public Main getMain() {
