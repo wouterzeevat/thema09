@@ -1,8 +1,8 @@
 ---
 title: "EDA.Rmd"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 # EDA Autism spectrum discorder quiz
@@ -29,9 +29,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r, echo=FALSE, include=FALSE}
-install.packages("ggplot2")  # Install and load ggplot2
-install.packages("dplyr")
-install.packages("viridis")  # Install
+#install.packages("ggplot2")  # Install and load ggplot2
+#install.packages("dplyr")
+#install.packages("viridis")  # Install
 ```
 ```{r, echo=FALSE, include=FALSE}
 
@@ -99,11 +99,9 @@ boxplot(data$age, main="Age of people taking ASD test", ylab="Age", col="cadetbl
 boxplot(log10(data$age), main="Age of people taking ASD test", ylab="10log Age", col="cadetblue1")
 ```
 Figure 1B/C, This is the fixed plot by using the 10log function. It shows that the majority of the people taking the test is Mid age.
-
-## Correlations
-
 This boxplot shows that there's not much old people (60+) doing the test. The people who take this test are usually mid aged.
 
+\newpage
 Now we will take a look at the test, how much people had what kind of anwser. The goal of this plot is to take a look at what the people scored.
 ```{r}
 df <- data.frame(x = rep(paste0("Q", c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10")), each = 2),
@@ -147,6 +145,8 @@ ggp
 
 Figure 2, The conclusion of this plot is that most questions are anwsered positively (Without getting a point).
 
+\newpage
+## Correlations
 Let's take a look at the correlations now. To start off, the end score will be measured against people actually having ASD. This will give a good view of the test because the test results will directly be compared to them having ASD.
 
 ```{r}
@@ -157,6 +157,7 @@ Figure 3, As seen in the plot, the scores do actually correlate with someone hav
 t.test(data$end_score, subset=data$autism, var.equal = TRUE)
 ```
 
+\newpage
 ```{r}
 
 df <- data.frame(x = rep(1, each=4),
@@ -171,7 +172,7 @@ ggp <- ggplot(df, aes(x = x, y = y, fill = group, label = y)) +  # Create stacke
 ggp
 ```
 Figure 4, This figure shows that Most people that take the test do not have ASD and no family member with ASD. There's also a big part of the group that do not have ASD but have family members with ASD. This makes sense because these people probably want to take the test because they know they have a family member with ASD and are scared they have it too.
-
+\newpage
 ```{r}
 grouped <- data %>% 
   mutate(positives = case_when(
@@ -187,7 +188,7 @@ Figure 5, Some correlation that would not be good would be the correlation of ag
 cor.test(data$end_score, data$age, method="pearson")
 ```
 
-## The weka algorithm
+## Supervised Learning
 
 There needs to be a algorithm made in Weka. After entering the data and removing the unused parts (Country of birth, Country of residence, Used the app before) multiple algorithms were tested. The function algorithm "SimpleLogistic" is chosen. This one fits the most because the different variables do not have a correlation therefore a tree or decision algorithm would not work. This will be confirmed by comparing it to different algorithms!
 
@@ -198,7 +199,7 @@ Now that the algorithm is correct some statistical tests will be applied.
 algorithms <- read.csv("algorithms.csv")
 
 ggp <- ggplot(data=algorithms, aes(x=algorithm, y=accuracy), label = y, fill=group) +
-  geom_col(position = "dodge", color = c("#FFFFFF", "#FF00FF", "#00FF00", "#FFFFFF", "#FFFFFF", "#FFFFFF"), show.legend = FALSE) +
+  geom_col(position = "dodge", show.legend = FALSE) +
   ggtitle("Multiple Algorithms comparison")
 
 ggp
@@ -209,12 +210,18 @@ The algorithm with the highest score here is SimpleLogistic. It's slightly highe
 
 ggp <- ggplot(data=algorithms, aes(x=algorithm, y=roc), label = y, fill=group, ylim=1.5) +
   geom_col(position = "dodge", show.legend = FALSE) +
-  ggtitle("Area under the curve (Standard deviation vs)"
-  + geom_errorbar(data=algorithms, mapping=aes(x=algorithm, ymin=roc-error, ymax=roc+error), width=0.2, size=1, color="#00AAAA"))
+  ggtitle("Area under the curve (Standard deviation vs)") +
+  geom_errorbar(aes(ymin = roc-error, ymax= roc+error), width = 0.2)
 ggp
 ```
+This graph shows that NaiveBayes has the highest area under the curve. All of them are significant to ZeroR though. The error rate shows that naivebayes could also have the same ROC as SimpleLogistic. Which is why SimpleLogistic is still the chosen classifier!
 
                                
 
-### Threshold curve
+Threshold curve
+<center>
 ![image](Threshold_curve.png)
+This is the Threshold curve of simplelogistic. It has a nice shape showing the ROC is quite good.
+
+After all of this is done A java wrapper will be made in order to use the balanced simplelogistic classifier.
+<center>
