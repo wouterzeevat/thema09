@@ -14,7 +14,7 @@ output:
 \newpage
 
 ## Introduction
-The AQ-10 test is a test with 10 questions that will try and predict if you have the autism spectrum disorder. Each question has 4 anwsers. Slightly agree, Agree, Slightly disagree and disagree. Every question gives either 1 or 0 points based on the anwser. Slightly agree gives the same points as agree and the same for disagree. They made it like this to make it feel like slightly agree/disagree feels like a better anwser when in doubt.
+The AQ-10 test is a test with 10 questions that will try and predict if you have the autism spectrum disorder. Each question has 4 answers. Slightly agree, Agree, Slightly disagree and disagree. Every question gives either 1 or 0 points based on the answer. Slightly agree gives the same points as agree and the same for disagree. They made it like this to make it feel like slightly agree/disagree feels like a better answer when in doubt.
 The more points the people have, the more chance there is of them having ADS (Autism disorder spectrum).
 
 The data: https://www.kaggle.com/datasets/faizunnabi/autism-screening
@@ -139,7 +139,7 @@ df$y[19] <- sum(data$a10_score == "YES")
 df$y[20] <- sum(data$a10_score == "NO")
 
 ggp <- ggplot(df, aes(x = x, y = y, fill = group, label = y)) +  # Create stacked bar chart
-  geom_bar(stat = "identity") + ggtitle("Q10 test Anwsers") + xlab("Question number") + ylab("Amount of anwsers") + scale_fill_manual(values = viridis(5))
+  geom_bar(stat = "identity") + ggtitle("Q10 test Anwsers") + xlab("Question number") + ylab("Amount of anwsers") + scale_fill_manual(values = viridis(5)) + labs(fill = "Autism")
 ggp 
 ```
 
@@ -150,7 +150,9 @@ Figure 2, The conclusion of this plot is that most questions are anwsered positi
 Let's take a look at the correlations now. To start off, the end score will be measured against people actually having ASD. This will give a good view of the test because the test results will directly be compared to them having ASD.
 
 ```{r}
-boxplot(data$end_score ~ data$autism, col=c("cadetblue4", "cadetblue3"), xlab="Has ASD", ylab="Q10 end score", main="Q10 scores vs actually having ASD")
+#boxplot(data$end_score ~ data$autism, col=c("cadetblue4", "cadetblue3"), xlab="Has ASD", ylab="Q10 end score", main="Q10 scores vs actually having ASD")
+ggplot(data=data, aes(x=end_score, y=autism)) + geom_boxplot(fill=viridis(6)[2:3]) +
+  ggtitle("End score compared to having ASD")
 ```
 Figure 3, As seen in the plot, the scores do actually correlate with someone having ASD. This is true because the scores of the people having ASD are significantly higher than the other people. Let's confirm this by doing a t-test
 ```{r}
